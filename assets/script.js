@@ -27,7 +27,33 @@ $(document).ready(function () {
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
+  // current hour in 24-hour time? ||WORKING||
+  
+  // USED https://day.js.org/docs/en/get-set/hour AND https://day.js.org/docs/en/display/difference TO WRITE FUNCTION TO FIND DIFFERENCE BETWEEN CURRENT HOUR AND DISPLAYED HOUR
+  // NOT GETTING AN ERROR, BUT ALSO NOT WORKING YET
+  function workingHours() {
+    var getHour = dayjs().hour()
+    $('.time-block').each(function() {
+      var timeBlockHour = parseInt($(this).attr('id').split('hour')[1])
+      console.log(timeBlockHour, getHour)
+
+      if (timeBlockHour < getHour) {
+        $(this).addClass("past");
+        $(this).removeClass("future");
+        $(this).removeClass("present");
+    }
+    else if (timeBlockHour === getHour) {
+        $(this).removeClass("past");
+        $(this).addClass("present");
+        $(this).removeClass("future");
+    }
+    else if (timeBlockHour > getHour) {
+        $(this).removeClass("past");
+        $(this).removeClass("present");
+        $(this).addClass("future");
+    }
+    })
+  }
   
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
