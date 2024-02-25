@@ -31,13 +31,16 @@ $(document).ready(function () {
   // current hour in 24-hour time? ||WORKING||
   
   // USED https://day.js.org/docs/en/get-set/hour AND https://day.js.org/docs/en/display/difference TO WRITE FUNCTION TO FIND DIFFERENCE BETWEEN CURRENT HOUR AND DISPLAYED HOUR
-  // NOT GETTING AN ERROR, BUT ALSO NOT WORKING YET
+  // TA HELPED ME IN OFFICE HOURS, I WAS USING SLIPT AND SHOULD HAVE BEEN USING SLICE
+  // ||DONE||
   function workingHours() {
     // GETTING THE CURRENT HOUR
-    let getHour = dayjs().hour()
+    let getHour = dayjs().hour();
     // ITERATING OVER ALL ELEMENTS WITH THE CLASS OF .TIME-BLOCK
     $('.time-block').each(function() {
-      let timeBlockHour = parseInt($(this).attr('id').split('hour')[1]);
+      // BELOW DOESNT WORK, SHOULD HAVE USED SLICE, NOT SPLIT
+      // let timeBlockHour = parseInt($(this).attr('id').split('hour')[1]);
+      let timeBlockHour = $(this).attr('id').slice(0, 2)
       console.log(timeBlockHour, getHour)
 
       if (timeBlockHour < getHour) {
@@ -55,7 +58,7 @@ $(document).ready(function () {
         $(this).removeClass("present");
         $(this).addClass("future");
     }
-    })
+    });
   }
 
   workingHours()
@@ -64,7 +67,7 @@ $(document).ready(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this? ||WORKING||
 
-  // DOESNT CURRENTLY WORK, TROUBLESHOOTING
+  // ERROR RESOLVED, ERROR WAS NOT IN THIS SECTION OF CODE, ERROR WAS ACTUALLY IN THE ABOVE SECTION OF SCRIPT, FIXED ON LINE 43
   $('#0900, .siblingValue').val(localStorage.getItem('#0900'))
   $('#1000, .siblingValue').val(localStorage.getItem('#1000'))
   $('#1100, .siblingValue').val(localStorage.getItem('#1100'))
@@ -74,6 +77,12 @@ $(document).ready(function () {
   $('#1500, .siblingValue').val(localStorage.getItem('#1500'))
   $('#1600, .siblingValue').val(localStorage.getItem('#1600'))
   $('#1700, .siblingValue').val(localStorage.getItem('#1700'))
+  $('#1800, .siblingValue').val(localStorage.getItem('#1800'))
+  $('#1900, .siblingValue').val(localStorage.getItem('#1900'))
+  $('#2000, .siblingValue').val(localStorage.getItem('#2000'))
+  $('#2100, .siblingValue').val(localStorage.getItem('#2100'))
+  $('#2200, .siblingValue').val(localStorage.getItem('#2200'))
+  $('#2300, .siblingValue').val(localStorage.getItem('#2300'))
   
   // TODO: Add code to display the current date in the header of the page. ||DONE||
   
